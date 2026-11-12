@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de administración | Russo Joyería</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#edeae3">
+  <meta name="color-scheme" content="light">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%231c2622'/><text x='32' y='45' font-family='Georgia,serif' font-size='38' fill='%23edeae3' text-anchor='middle'>R</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Bodoni+Moda:opsz,wght@6..96,400..700&display=swap">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body class="admin-body">
+
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4 4L19 7"/></symbol>
+  </svg>
+
+  <header class="admin-header">
+    <div class="wrap admin-header-inner">
+      <a href="index.html" class="brand" aria-label="RUSSO Joyería, Administración, ir a la tienda">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>
+          <span class="brand-name">RUSSO</span>
+          <span class="brand-sub">Administración</span>
+        </span>
+      </a>
+
+      <div class="admin-header-actions">
+        <span id="api-url" class="admin-api"></span>
+        <a href="index.html" class="btn btn-outline btn-sm">Ver la tienda</a>
+        <button id="logout-btn" class="btn btn-ink btn-sm hidden" type="button">Salir</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="admin-main">
+    <div class="wrap">
+
+      <section id="login-view" class="admin-login" aria-labelledby="login-title">
+        <div class="admin-card admin-card--login">
+          <p class="admin-kicker">Acceso interno</p>
+          <h1 id="login-title" class="admin-title">Entrar al panel</h1>
+          <p class="admin-sub">Solo personal de Russo Joyería. La sesión dura 8 horas.</p>
+
+          <form id="login-form" class="admin-form">
+            <div class="field">
+              <label for="login-user">Usuario</label>
+              <input id="login-user" class="input" type="text" autocomplete="username" required>
+            </div>
+
+            <div class="field">
+              <label for="login-pass">Contraseña</label>
+              <input id="login-pass" class="input" type="password" autocomplete="current-password" required>
+            </div>
+
+            <p id="login-error" class="admin-error hidden" role="alert"></p>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-emerald">Entrar</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section id="panel-view" class="hidden" aria-labelledby="panel-title">
+        <div class="admin-head">
+          <p class="admin-kicker">Catálogo</p>
+          <h1 id="panel-title" class="admin-title">Nuevo producto</h1>
+          <p class="admin-sub">Lo que guardes aquí aparece en la tienda al instante.</p>
+        </div>
+
+        <div class="admin-panel">
+
+          <form id="product-form" class="admin-card admin-form admin-form--grid">
+            <div class="field field--full">
+              <label for="p-name">Nombre</label>
+              <input id="p-name" class="input" required placeholder="Cruz dorada con circonias">
+            </div>
+
+            <div class="field">
+              <label for="p-ref">Referencia</label>
+              <input id="p-ref" class="input" required placeholder="20001">
+            </div>
+
+            <div class="field">
+              <label for="p-category">Categoría</label>
+              <select id="p-category" class="select" required>
+                <option value="">Cargando…</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="p-price">Precio (COP)</label>
+              <input id="p-price" class="input" type="number" min="0" step="1000" required placeholder="85000">
+            </div>
+
+            <div class="field">
+              <label for="p-original">Precio anterior (opcional)</label>
+              <input id="p-original" class="input" type="number" min="0" step="1000" placeholder="99000">
+            </div>
+
+            <div class="field field--full">
+              <label for="p-image">Imagen</label>
+              <input id="p-image" class="input" placeholder="images/products/20001.jpg">
+              <p class="field-hint">
+                Copia la foto a <code>frontend/images/products/</code> y escribe la ruta.
+                También acepta una URL completa.
+              </p>
+            </div>
+
+            <div class="field field--full">
+              <label for="p-description">Descripción</label>
+              <textarea id="p-description" class="textarea" rows="2"
+                placeholder="Joya en oro laminado 18K con garantía de un año."></textarea>
+            </div>
+
+            <div class="field">
+              <label for="p-material">Material</label>
+              <input id="p-material" class="input" placeholder="Oro laminado 18K">
+            </div>
+
+            <div class="field">
+              <label for="p-dimension">Medida</label>
+              <input id="p-dimension" class="input" placeholder="Medida oficial de catálogo">
+            </div>
+
+            <div class="field field--full">
+              <label for="p-variants">Variantes</label>
+              <textarea id="p-variants" class="textarea" rows="3"
+                placeholder="Dorado 18K|DORADO&#10;Plateado|PLATA"></textarea>
+              <p class="field-hint">
+                Una por línea con formato <code>Nombre|CODIGO</code>.
+                Si lo dejas vacío, la pieza se vende como única.
+              </p>
+            </div>
+
+            <div class="check-row field--full">
+              <label>
+                <input id="p-new" type="checkbox">
+                Novedad
+              </label>
+              <label>
+                <input id="p-best" type="checkbox">
+                Más vendido
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button id="save-btn" type="submit" class="btn btn-emerald">Guardar producto</button>
+            </div>
+          </form>
+
+          <div class="admin-card">
+            <div class="admin-list-head">
+              <h2 class="admin-list-title">
+                Catálogo <span id="product-count">0</span>
+              </h2>
+              <button id="refresh-btn" type="button" class="btn btn-outline btn-sm">
+                Actualizar
+              </button>
+            </div>
+
+            <div id="product-list" class="admin-list" aria-live="polite">
+              <p class="admin-list-status">Cargando…</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <div id="toast-container" class="toast-container" role="status" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
