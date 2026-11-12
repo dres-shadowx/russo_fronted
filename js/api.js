@@ -4,10 +4,11 @@
  * Todas las llamadas al backend pasan por aquí, así el resto del
  * frontend no sabe nada de fetch, headers ni tokens.
  */
-const RussoAPI = (() => {
-  const baseUrl = () =>
-    (window.RUSSO_API && window.RUSSO_API.baseUrl) || 'http://localhost:4000/api';
-
+  const RussoAPI = (() => {
+    const baseUrl = () => {
+    return window.RUSSO_API?.baseUrl || 
+           'https://russo-backend-jv3m.onrender.com/api';
+  };
   function toQuery(params) {
     const clean = Object.entries(params)
       .filter(([, v]) => v !== undefined && v !== null && v !== '')
